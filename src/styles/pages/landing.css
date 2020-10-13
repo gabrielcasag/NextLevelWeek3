@@ -23,6 +23,7 @@
   justify-content: space-between;
 
   background: url(../../images/landing.svg) no-repeat 80% center;
+  background-size: 50%;
 }
 
 #page-landing .content-wrapper main {
@@ -73,4 +74,5 @@
 
 .content-wrapper .enter-app:hover {
   background: #96feff;
+  box-shadow: 1px 3px rgba(0, 0, 0, 0.2);
 }
