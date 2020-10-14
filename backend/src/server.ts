@@ -1,4 +1,6 @@
 import express from 'express';
+import { getRepository } from 'typeorm';
+import Orphanage from './models/Orphanage';
 
 import './database/connection';
 
@@ -7,12 +9,32 @@ const app = express();
 app.use(express.json());
 
 // criando uma ROTA com RECURSOS de usuario
-app.post('/users/:id', (req, res) => {
-  console.log(req.query);  
-  console.log(req.params);  
-  console.log(req.body);
+app.post('/orphanages', async (req, res) => {
+  const {
+    name,
+    latitude,
+    longitude,
+    about,
+    instructions,
+    opening_hours,
+    open_on_weekends
+  } = req.body;
 
-  return res.json({ message: 'HELLO WORLD!' });
+  const orphanagesRepository = getRepository(Orphanage);
+
+  const orphanage = orphanagesRepository.create({
+    name,
+    latitude,
+    longitude,
+    about,
+    instructions,
+    opening_hours,
+    open_on_weekends
+  });
+
+  await orphanagesRepository.save(orphanage);
+
+  return res.status(201).json({ message: 'Orfanato Salvo com Sucesso!' });
 });
 
 app.listen(3333);
