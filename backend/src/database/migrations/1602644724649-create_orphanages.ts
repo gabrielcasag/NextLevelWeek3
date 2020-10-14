@@ -1,9 +1,9 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class createOrphanages1602644724649 implements MigrationInterface {
-  //realiza as alterações
+export class createOrphanages0 implements MigrationInterface {
+
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.createTable( new Table({ 
+    await queryRunner.createTable(new Table({
       name: 'orphanages',
       columns: [
         {
@@ -12,23 +12,23 @@ export class createOrphanages1602644724649 implements MigrationInterface {
           unsigned: true,
           isPrimary: true,
           isGenerated: true,
-          generationStrategy: 'increment'
+          generationStrategy: 'increment',
         },
         {
           name: 'name',
-          type: 'varchar'
+          type: 'varchar',
         },
         {
           name: 'latitude',
           type: 'decimal',
-          scale: 10,
-          precision: 2
+          precision: 10,
+          scale: 2,
         },
         {
           name: 'longitude',
           type: 'decimal',
-          scale: 10,
-          precision: 2
+          precision: 10,
+          scale: 2,
         },
         {
           name: 'about',
@@ -40,17 +40,17 @@ export class createOrphanages1602644724649 implements MigrationInterface {
         },
         {
           name: 'opening_hours',
-          type: 'varchar'
+          type: 'varchar',
         },
         {
           name: 'open_on_weekends',
           type: 'boolean',
           default: false
         }
-      ],
-    }))
+      ]
+    }));
   }
-  //desfaz as alterações
+
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable('orphanages');
   }
